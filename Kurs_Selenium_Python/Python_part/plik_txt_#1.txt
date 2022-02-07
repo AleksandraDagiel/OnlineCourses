@@ -1,0 +1,3 @@
+To jest wiadomosc do kursanta
+Przeczytaj mnie
+Korzystajac z Pythona
