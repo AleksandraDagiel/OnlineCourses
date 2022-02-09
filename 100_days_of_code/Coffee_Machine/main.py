@@ -39,7 +39,6 @@ def check_resources_sufficient(coffee_type):
         return True
 
 
-#  5. Process coins.
 def money_insert():
     """Returns how much money user inserted to the machine."""
     print("Please insert coins.")
@@ -65,7 +64,6 @@ def check_if_enough_money(coffee, money_inserted, profit_money):
         coffee_choice(profit_money)
 
 
-# 7. Make Coffee.
 def update_resources(coffee_type):
     """Lower resources depend on coffee choice."""
     resources['water'] = resources['water'] - MENU[coffee_type]['ingredients']['water']
@@ -81,7 +79,7 @@ def make_coffee(profit_money):
     if check_resources_sufficient(coffee_type):
         profit_money += check_if_enough_money(coffee_type, money_insert(), profit_money)
         update_resources(coffee_type)
-        print(f"Here is your {coffee_type}. Enjoy!")
+        print(f"Here is your {coffee_type} ☕. Enjoy!")
     make_coffee(profit_money)
 
 
