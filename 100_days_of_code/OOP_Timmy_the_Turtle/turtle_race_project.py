@@ -1,39 +1,19 @@
-import turtle
 from turtle import Turtle, Screen
 
 tim = Turtle()
 screen = Screen()
-tim.shape("arrow")
-# tim.up()
+is_race_on = False
+screen.setup(width=500, height=400)
+user_bet = screen.textinput(title="Make your bet.", prompt="Which turtle win win the race? Enter the color: ")
+colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+x_position = -230
+y_position = [-100, -50, 0, 50, 100, 150]
 
-
-def clean_screen():
+for turtle_index in range(0,6):
+    tim = Turtle(shape="turtle")
+    tim.color(colors[turtle_index])
     tim.penup()
-    tim.clean()
-    tim.home()
-    tim.pendown()
+    tim.goto(x=x_position, y=y_position)
 
 
-def move_forwards():
-    tim.forward(20)
-
-
-def move_backwards():
-    tim.backward(20)
-
-
-def turn_left():
-    tim.left(10)
-
-
-def turn_right():
-    tim.right(10)
-
-
-screen.listen()
-screen.onkey(key="d", fun=turn_right)
-screen.onkey(key="c", fun=clean_screen)
-screen.onkey(key="w", fun=move_forwards)
-screen.onkey(key="s", fun=move_backwards)
-screen.onkey(key="a", fun=turn_right)
 screen.exitonclick()
