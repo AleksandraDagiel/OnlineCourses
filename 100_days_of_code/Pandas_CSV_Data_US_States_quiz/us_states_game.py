@@ -17,10 +17,11 @@ while questions_counter < 50:
     else:
         answer_state = screen.textinput(title=f"{questions_counter}/50 States Correct",
                                         prompt="What's another state's name?").title()
-    if answer_state not in states_base:
-        print("State is not correct. Try again.")
-    else:
-        print("Correct")
+
+    if answer_state == 'Exit':
+        pandas.DataFrame(states_base).to_csv("missing_states.csv")
+        break
+    elif answer_state in states_base:
         questions_counter += 1
         states_base.remove(answer_state)
         state_coordinates = (data[data.state == answer_state].x.item(), data[data.state == answer_state].y.item())
