@@ -29,6 +29,16 @@ alphabet_dict = {row.letter: row.code for (index, row) in data.iterrows()}
 
 
 # 2. Create a list of the phonetic code words from a word that the user inputs.
-user_input = input("word: ").upper()
-phonetic_code = [word for (letter, word) in alphabet_dict.items() if letter in user_input]
-print(user_input, phonetic_code)
+
+def generate_phonetic():
+    user_input = input("word: ").upper()
+    try:
+        phonetic_code = [alphabet_dict[letter] for letter in user_input]
+        valid_input = True
+    except KeyError:
+        print("Sorry, only letters in the alphabet please.")
+        generate_phonetic()
+    else:
+        print(user_input, phonetic_code)
+
+generate_phonetic()
