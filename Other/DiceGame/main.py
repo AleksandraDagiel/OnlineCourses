@@ -10,10 +10,9 @@ class Die:
     def value(self):
         return self._value
 
-    def roll(self):
-        new_value = random.randint(1, 6)
-        self._value = new_value
-        return new_value
+    def _roll(self):
+        self._value = random.randint(1, 6)
+        return self.value
 
 
 class Player:
@@ -35,14 +34,14 @@ class Player:
     def counter(self):
         return self._counter
 
-    def increment_counter(self):
+    def _increment_counter(self):
         self._counter += 1
 
-    def decrement_counter(self):
+    def _decrement_counter(self):
         self._counter -= 1
 
-    def roll_die(self):
-        return self._die.roll()
+    def _roll_die(self):
+        return self._die._roll()
 
 
 class DiceGame:
@@ -56,18 +55,19 @@ class DiceGame:
         print("🎲 Welcome to Roll the Dice!")
         print("============================")
         while True:
-            self.play_round()
+            self._play_round()
             game_over = self._check_game_over()
             if game_over:
                 break
+        self._play_again()
 
-    def play_round(self):
+    def _play_round(self):
         # Welcome the user
         self._print_round_welcome()
 
         # Roll the dice
-        player_value = self._player.roll_die()
-        computer_value = self._computer.roll_die()
+        player_value = self._player._roll_die()
+        computer_value = self._computer._roll_die()
 
         # Show the values
         self._show_dice(player_value, computer_value)
@@ -94,8 +94,8 @@ class DiceGame:
         print(f"Computer die: {computer_value}\n")
 
     def _update_counters(self, winner, loser):
-        winner.decrement_counter()
-        loser.increment_counter()
+        winner._decrement_counter()
+        loser._increment_counter()
 
     def _show_counters(self):
         print(f"Your counter: {self._player.counter}")
@@ -122,6 +122,20 @@ class DiceGame:
             print("You win! Congratulations!")
             print("GAME OVER.")
             print("===========")
+
+    def _play_again(self):
+        print("\nWould you like to play again?\n")
+        response = input("Type 'y' for 'yes' and 'n' for 'no': ")
+        response = response.lower()
+        if response == "y":
+            self._player._counter = 10
+            self._computer._counter = 10
+            game.play()
+        elif response == "n":
+            print("\n😊 Thanks for playing! Have a nice day! 😊")
+        else:
+            print("\nPlease input either 'y' or 'n'.")
+            self._play_again()
 
 
 # Create instances
