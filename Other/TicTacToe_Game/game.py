@@ -23,7 +23,7 @@ class TicTacToeGame:
                 board.submit_move(player, player_move)
                 board.print_board()
 
-                if board.check_is_tie():
+                if board.check_is_tie() and not board.check_is_game_over(player, player_move):
                     print("It's a tie! Try again.")
                     break
                 elif board.check_is_game_over(player, player_move):
@@ -38,7 +38,7 @@ class TicTacToeGame:
                         print("Oops... The computer won. Try again.")
                         break
 
-            play_again = input("Would you like to play again? Enter X for YES or 0 for NO.").upper()
+            play_again = input("Would you like to play again? Enter X for YES or 0 for NO.:  ").upper()
 
             if play_again == "O":
                 print("Bye! Come back soon.")
