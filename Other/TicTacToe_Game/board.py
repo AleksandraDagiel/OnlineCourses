@@ -53,7 +53,7 @@ class Board:
 
         for i in range(3):
             if self.game_board[i][column_index] == player.marker:
-                marker_count += 3
+                marker_count += 1
 
         return marker_count == 3
 
