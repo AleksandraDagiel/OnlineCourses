@@ -9,6 +9,10 @@ class CustomerDetails{
         console.log(firstName)
     }
 
+    /**
+     * This method will print the last name
+     * @param {string} lastName 
+     */
     printLastName(lastName){
         console.log(lastName)
     }
