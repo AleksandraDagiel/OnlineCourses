@@ -42,6 +42,35 @@ test.describe.skip('suite3', () => {
     })
 })
 
-test.afterEach(async ({page}) => {
-    page.close()
+// test.afterEach(async ({page}) => {
+//     page.close()
+// })
+
+test('Locator syntax rules', async({page}) => {
+    //by Tag name
+    page.locator('input')
+
+    //by ID
+    page.locator('#inputEmail1')
+
+    //by Class value
+    page.locator('.shape-rectangle')
+
+    //by attribute
+    page.locator('[placeholder="Email"')
+
+    //by Class value (full)
+    page.locator('[class="input-full-width size-medium status-basic shape-rectangle nb-transition"')
+
+    //combine different selectors
+    page.locator('input[placeholder="Email"][nbinput]')
+
+    //by XPath (NOT RECOMMENDED
+    page.locator('//*[@id="inputEmail')
+
+    //by partial text match
+    page.locator('.text("Using")')
+
+    //bt exact text match
+    page.locator(':text-is("Using the Grid')
 })
