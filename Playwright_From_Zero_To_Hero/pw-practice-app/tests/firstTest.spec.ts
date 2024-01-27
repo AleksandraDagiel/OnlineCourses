@@ -42,9 +42,9 @@ test.describe.skip('suite3', () => {
     })
 })
 
-// test.afterEach(async ({page}) => {
-//     page.close()
-// })
+test.afterEach(async ({page}) => {
+    page.close()
+})
 
 test('Locator syntax rules', async({page}) => {
     //by Tag name
@@ -73,4 +73,31 @@ test('Locator syntax rules', async({page}) => {
 
     //bt exact text match
     page.locator(':text-is("Using the Grid')
+})
+
+test.describe("Geting locator that are visible by user", () => {
+    test.beforeEach(async ({page}) => {
+        await page.getByText('Forms').click()
+        await page.getByText('Form Layouts').click()
+    })
+
+    test('User facing locators', async({page}) => {
+        await page.getByText('Forms').click()
+        
+        await page.getByText('Form Layouts').click()
+        
+        await page.getByRole('textbox', {name: "Email"}).first().click()
+        
+        await page.getByRole('button',{name: 'Sign in'}).first().click()
+    
+        await page.getByLabel('Email').first().click()
+    
+        await page.getByPlaceholder('Jane Doe').click()
+    
+        await page.getByText('Using The Grid').click()
+
+        await page.getByTitle('IoT Dashboard').click()
+
+        // await page.getByTestId('SomeName').click()  -> you need to add data-testid="SomeName" to the source code of the app
+    })
 })
