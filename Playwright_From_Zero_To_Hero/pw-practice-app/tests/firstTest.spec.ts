@@ -100,4 +100,13 @@ test.describe("Geting locator that are visible by user", () => {
 
         // await page.getByTestId('SomeName').click()  -> you need to add data-testid="SomeName" to the source code of the app
     })
+
+    test('Locating child elements', async({page}) => {
+        await page.locator('nb-card nb-radio :text-is("Option 1")').click()
+        await page.locator('nb-card').locator('nb-radio').locator(':text-is("Option 2")').click()
+    
+        await page.locator('nb-card').getByRole('button', {name: "Sign in"}).first().click()
+
+        await page.locator('nb-card').nth(3).getByRole('button').click()  // index from 0
+    })
 })
